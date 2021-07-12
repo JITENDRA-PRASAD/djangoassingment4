@@ -1,4 +1,28 @@
-.body {
-    background-color: black;
-    background: blue;
+body nav{
+    margin: 20px;
+    background-color: blue;
+    text-align: center;
+    padding: 10px;
+}
+div {
+    color: black;
+}
+
+div a {
+    color: black;
+}
+
+#right {
+    text-align:right;
+}
+
+.section {
+    margin: 30px;
+    width: 200px;
+    height: 100%;
+    padding-left: 50px;
+}
+
+.section li a {
+    color:darkblue;
 }
