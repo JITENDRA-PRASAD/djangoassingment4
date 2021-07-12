@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}
+{{ post.title|title }}
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'app1/post_detail.css' %}" />
+{% endblock %}
+
+
+{% block header %}
+    <header id="main-navigation">
+        <h1><a href="{% url 'starting-page' %}">World Best Blogs</a></h1>
+        <nav>
+            <a href="{% url 'all-posts' %}">All Posts</a><span> | <span>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}"> logout</a>
+            {% else %}
+            <a href="{% url 'login' %}"> login</a>
+            {% endif %}
+        </nav>
+    </header>
+{% endblock %}
+
+
+
+{% block content %}
+<section id="summary">
+<h2>{{ posts.title|title }}</h2>
+<article>
+    <img src="{% static 'app1/images/'|add:posts.image %}" alt=""/>
+    <address>{{ posts.author }}</address>
+    <div>
+        Last Updated on <time>{{ posts.date|date:"d M Y" }}</time>
+    </div>
+</article>
+</section>
+<main>
+    {{ posts.content|linebreaks }}<br>
+    {% if user.is_authenticated %}
+        <a href="{% url 'comment' %}" type='button'>comment</a>
+        {% if favoritepost == posts.slug %}
+            <p> This is my Favorite Post</p>
+        {% else %}
+            <form method="post" action="{% url 'favorite' %}">
+                {% csrf_token %}
+                <input type="hidden" name="slug" value="{{ posts.slug }}"/>
+                <button type="submit" >Favorite</button>
+            </form>
+        {% endif %}
+    {% endif %}
+</main>
+<main>
+    {% for comment in comments %}
+        {% if comment.post.title == posts.title %}
+            <li> {{ comment.user_name }}</li>
+            {{ comment.text }}
+            <br>
+        {% endif %}
+    {% endfor %}
+</main>
+{% endblock %}

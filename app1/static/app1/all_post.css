@@ -1,0 +1,21 @@
+body {
+    background-color:white;
+  }
+#header {
+  background:rgb(140, 140, 247);
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  position: absolute;
+}
+#header a {
+  color: white;
+}
+
+#all_posts {
+  padding-top: 200px;
+  margin-top: 50px;
+}

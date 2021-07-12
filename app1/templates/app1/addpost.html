@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block page_title %} Add Post{% endblock  %}
+
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'app1/addpost.css' %}"/>
+{% endblock  %}
+
+
+
+{% block header %}
+    <nav class="header">
+        <h2> World Best Blog </h2>
+    </nav>
+{% endblock %}
+
+
+
+{% block content %}
+    <form method='POST' action="">
+    <h2>Post your blog</h2>
+        {% csrf_token %}
+        {% for field in forms%}
+            <div >{{ field.name|title }}</div>
+            <div >{{ field }}</div>
+        {% endfor %}
+        <br>
+        <button type="submit" >Submit</button>
+    </form>
+{% endblock  %}

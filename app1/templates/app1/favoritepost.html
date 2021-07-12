@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_title %} Favorite Posts {% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'app1/favoritepost.css' %}" />
+{% endblock %}
+
+{% block header %}
+    <div id="favorite">
+        <h1> Favorite Posts</h1>
+    </div>
+    <div id="right">
+        <a href="{% url 'starting-page' %}">HOME</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+        {% for post in posts %}
+            {% if post.slug in request.session %}
+                <li><a href="{% url 'selected-post' post_slug=post.slug %}">{{ post.titel }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock  %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_title %}success{% endblock %}
+
+{% block css_files %}{% endblock  %}
+
+{% block header %}
+    you post your blog successfully
+{% endblock  %}
+
+{% block content %}
+    <h1>Thanks you</h1>
+    <a href='{% url 'starting-page' %}'> Home </a>
+{% endblock  %}

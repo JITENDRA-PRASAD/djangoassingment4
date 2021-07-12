@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block page_title %} Comment {% endblock  %}
+
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'app1/addpost.css' %}"/>
+{% endblock  %}
+
+
+
+{% block header %}
+    <nav>
+        <h1>Post your comment</h1>
+        <a href="{% url 'all-posts' %}">ALL POST</a>
+    </nav>
+{% endblock %}
+
+
+
+{% block content %}
+    <form method='POST' action="">
+        {% csrf_token %}
+        {% for field in forms%}
+        <li>{{ field.name }}{{ field }}</li>
+        {% endfor %}
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock  %}

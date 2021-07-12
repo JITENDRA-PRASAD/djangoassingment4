@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block page_title %} Sing Up{% endblock  %}
+
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'app1/addpost.css' %}"/>
+{% endblock  %}
+
+
+
+{% block header %}
+    <nav>
+        <h1>Sing Up</h1>
+    </nav>
+{% endblock %}
+
+
+
+{% block content %}
+    <form method='POST'>
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-control {% if field.errors %}errors{% endif %}">
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+        <br>
+        <button type="Submit" >Submit</button>
+    </form>
+{% endblock  %}

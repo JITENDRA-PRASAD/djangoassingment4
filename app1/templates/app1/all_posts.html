@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}All Posts{% endblock %}
+
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'app1/posts.css' %}" />
+<link rel="stylesheet" href="{% static 'app1/all_post.css' %}" />
+{% endblock css_files %}
+
+
+{% block header %}
+<nav id='header'>
+    <a href="{% url 'starting-page' %}">World Best Blogs<a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'addpost' %}">Add Post</a>
+        <a href="{% url 'logout' %}">LogOut ({{ user.get_username }})<a>
+        <a href="{% url 'favoriteposts' %}"> Favorite Post</a>
+    {% else %}
+        <a href="{% url 'login' %}">LogIn<a>
+    {% endif %}
+</nav>
+{% endblock %}
+
+{% block content %}
+<section id="all-posts">
+    <h1>all post</h1>
+    <ul>
+        {% for post in posts %}
+            {% include 'app1/includes/post_summary.html' with post=post%}
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock content %}
+
+
