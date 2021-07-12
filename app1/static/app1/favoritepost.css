@@ -1,4 +1,4 @@
-#section li {
-    color: black;
-    background-color: blue;
+.body {
+    background-color: black;
+    background: blue;
 }
